@@ -1,7 +1,6 @@
 import { Dispatch } from "redux";
 import { EmployeesActionTypes } from "../types/employeesActions";
 import { UpdateEmployee } from "../../models/UpdateEmployee";
-import { store } from "../rootReducer";
 
 export const loadEmployees = () => {
 	return async (dispatch: Dispatch) => {
@@ -16,8 +15,8 @@ export const loadEmployees = () => {
 	}
 };
 
-export const updateEmployee = (employee: UpdateEmployee) => {
-	store.dispatch({
+export const updateEmployee = (dispatch: Dispatch, employee: UpdateEmployee) => {
+	dispatch({
 		type: EmployeesActionTypes.update,
 		payload: employee
 	});

@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { styled } from "styled-components";
-import { ViewEmployeeContainerProps } from "./ViewEmployeeContainer";
+import { ViewEmployeeContainerDispatchProps, ViewEmployeeContainerProps } from "./ViewEmployeeContainer";
 import { Link } from "react-router-dom";
 import { updateEmployee } from "../redux/actionCreators/employeesActionCreators";
 
@@ -76,7 +76,7 @@ const Submit = styled.input`
 
 type Props = {
 	id: string;
-} & ViewEmployeeContainerProps;
+} & ViewEmployeeContainerProps & ViewEmployeeContainerDispatchProps;
 
 type State = {
 	firstName: string | undefined;
@@ -102,7 +102,7 @@ export default class ViewEmployee extends Component<Props, State> {
 		return (
 			<EmployeeBlock onSubmit={(e) => {
 				e.preventDefault();
-				updateEmployee({
+				this.props.updateEmployee({
 					id: this.props.id,
 					firstName: this.state.firstName || "",
 					lastName: this.state.lastName || "",
